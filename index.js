@@ -38,6 +38,15 @@ mongoose
   //   await Recipe.insertMany(data);
   //   data.map(() => console.log(data.title));
   // })
+  .then(() => {
+    return Recipe.findOneAndUpdate(
+      { title: "Rigatoni alla Genovese" },
+      { $set: { duration: 100 } }
+    );
+  })
+  .then(() => {
+    return Recipe.findOneAndDelete({ title: "Carrot Cake" });
+  })
   .catch((error) => {
     console.error("Error connecting to the database", error);
   });
